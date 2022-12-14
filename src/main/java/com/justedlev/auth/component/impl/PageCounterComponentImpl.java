@@ -16,16 +16,16 @@ public class PageCounterComponentImpl implements PageCounterComponent {
 
     @Override
     public int accountPageCount(int size) {
-        return (int) Math.ceilDiv(accountRepository.count(), size);
+        return (int) Math.ceil((double) accountRepository.count() / size);
     }
 
     @Override
     public int userPageCount(int size) {
-        return (int) Math.ceilDiv(userRepository.count(), size);
+        return (int) Math.ceil((double) userRepository.count() / size);
     }
 
     @Override
     public int rolePageCount(int size) {
-        return (int) Math.ceilDiv(roleRepository.count(), size);
+        return (int) Math.ceil((double) roleRepository.count() / size);
     }
 }

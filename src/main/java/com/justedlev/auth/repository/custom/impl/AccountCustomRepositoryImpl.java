@@ -53,12 +53,10 @@ public class AccountCustomRepositoryImpl implements AccountCustomRepository {
         }
 
         cq.orderBy(QueryUtils.toOrders(pageable.getSort(), root, cb));
-
         var ids = em.createQuery(cq.select(root.get("id")))
                 .setFirstResult((int) pageable.getOffset())
                 .setMaxResults(pageable.getPageSize())
                 .getResultList();
-
         var idFilter = AccountFilter.builder()
                 .ids(ids)
                 .build();

@@ -12,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +34,10 @@ public class AccountMapperImpl implements AccountMapper {
 
     @Override
     public List<AccountResponse> mapToResponse(List<Account> requests) {
-        return Arrays.asList(defaultMapper.map(requests, AccountResponse[].class));
+        return requests.stream()
+                .map(current -> defaultMapper.map(current, AccountResponse.class))
+                .distinct()
+                .toList();
     }
 
     @Override

@@ -36,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
             throw new IllegalArgumentException(String.format("Maximum pages is %s", pageCount));
         }
 
-        var accounts = accountComponent.getPage(null, request);
+        var accounts = accountComponent.getPage(new AccountFilter(), request);
         var data = accountMapper.mapToResponse(accounts);
 
         return PageResponse.<List<AccountResponse>>builder()
