@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  accounting-service:
+    env_file:
+      - .env
+    build: .
+    ports:
+      - "8080:8080"
+    image: justedlev/accounting-service-img:back-1.0.0
