@@ -1,0 +1,32 @@
+justedlev-service:
+  storage:
+    host: http://localhost:8081/api
+  auth:
+    fill-users: false
+    min-password-length: ${MIN_PASSWORD_LENGTH:8}
+    count-last-hashes: ${COUNT_LAST_HASHES:3}
+    deactivation-time: ${DEACTIVATION_TIME:15m}
+    code-length: ${CODE_LENGTH:4}
+    activity-time: ${ACTIVITY_TIME:10m}
+    service:
+      email: ${SERVICE_MAIL_USERNAME}
+      host: ${SERVICE_HOST:http://localhost:${server.port}}${server.servlet.context-path}
+    cors:
+      origins: ${ORIGINS:http://localhost:${server.port},http://localhost:3000}
+    token:
+      access:
+        type: ${ACCESS_TOKEN_TYPE}
+        secret: ${ACCESS_TOKEN_SECRET}
+        expiration-time: ${ACCESS_TOKEN_EXPIRATION_TIME:15m}
+      refresh:
+        secret: ${REFRESH_TOKEN_SECRET}
+        type: ${REFRESH_TOKEN_TYPE}
+        expiration-time: ${REFRESH_TOKEN_EXPIRATION_TIME:30m}
+    cron:
+      offline-mode-in: ${OFFLINE_MODE_IN:0 */5 * * * *}
+      sleep-mode-in: ${SLEEP_MODE_IN:0 */5 * * * *}
+    super-admin:
+      auto-create: true
+      password: ${SUPERADMIN_PASSWORD}
+      nickname: ${SUPERADMIN_NICKNAME}
+      email: ${SUPERADMIN_EMAIL}
