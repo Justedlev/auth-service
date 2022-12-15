@@ -37,8 +37,8 @@ public class SecurityConfiguration {
             EndpointConstant.AUTH_LOGIN_REFRESH,
             EndpointConstant.ACCOUNT_CONFIRM_CODE,
             EndpointConstant.LOGOUT,
-            EndpointConstant.ACCOUNT + "/offline",
-            EndpointConstant.ACCOUNT + "/sleep"
+            EndpointConstant.ACCOUNT_SLEEP,
+            EndpointConstant.ACCOUNT_OFFLINE
     };
     private static final String[] SUPER_ADMIN_ACCESS = {
             EndpointConstant.ROLE,

@@ -70,12 +70,12 @@ public class AccountController {
         return ResponseEntity.ok(accountService.confirm(code));
     }
 
-    @PostMapping(value = "/sleep")
+    @PostMapping(value = EndpointConstant.SLEEP)
     public ResponseEntity<List<AccountResponse>> sleep() {
         return ResponseEntity.ok(accountService.sleepMode());
     }
 
-    @PostMapping(value = "/offline")
+    @PostMapping(value = EndpointConstant.OFFLINE)
     public ResponseEntity<List<AccountResponse>> offline() {
         return ResponseEntity.ok(accountService.offlineMode());
     }
