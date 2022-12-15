@@ -3,13 +3,18 @@ package com.justedlev.auth.service.impl;
 import com.justedlev.auth.common.mapper.AccountMapper;
 import com.justedlev.auth.common.mapper.ReportMapper;
 import com.justedlev.auth.component.AccountComponent;
+import com.justedlev.auth.component.AccountModeComponent;
 import com.justedlev.auth.component.PageCounterComponent;
+import com.justedlev.auth.component.command.AccountModeCommand;
 import com.justedlev.auth.constant.ExceptionConstant;
+import com.justedlev.auth.enumeration.ModeType;
 import com.justedlev.auth.model.request.AccountRequest;
 import com.justedlev.auth.model.request.PaginationRequest;
 import com.justedlev.auth.model.response.AccountResponse;
 import com.justedlev.auth.model.response.PageResponse;
 import com.justedlev.auth.model.response.ReportResponse;
+import com.justedlev.auth.properties.AuthProperties;
+import com.justedlev.auth.properties.TokenAccessProperties;
 import com.justedlev.auth.repository.custom.filter.AccountFilter;
 import com.justedlev.auth.service.AccountService;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +28,13 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
+    private final TokenAccessProperties tokenAccessProperties;
+    private final AuthProperties properties;
     private final AccountComponent accountComponent;
     private final AccountMapper accountMapper;
     private final ReportMapper reportMapper;
     private final PageCounterComponent pageCounterComponent;
+    private final AccountModeComponent accountModeComponent;
 
     @Override
     public PageResponse<List<AccountResponse>> getPage(PaginationRequest request) {
@@ -95,5 +103,27 @@ public class AccountServiceImpl implements AccountService {
         response.setPhotoUrl(account.getPhoto().getUrl());
 
         return response;
+    }
+
+    @Override
+    public List<AccountResponse> sleepMode() {
+        var command = AccountModeCommand.builder()
+                .fromModes(Set.of(ModeType.HIDDEN, ModeType.ONLINE))
+                .duration(properties.getActivityTime())
+                .toMode(ModeType.SLEEP)
+                .build();
+
+        return accountModeComponent.updateMode(command);
+    }
+
+    @Override
+    public List<AccountResponse> offlineMode() {
+        var command = AccountModeCommand.builder()
+                .fromModes(Set.of(ModeType.HIDDEN, ModeType.ONLINE, ModeType.SLEEP))
+                .duration(tokenAccessProperties.getExpirationTime())
+                .toMode(ModeType.OFFLINE)
+                .build();
+
+        return accountModeComponent.updateMode(command);
     }
 }

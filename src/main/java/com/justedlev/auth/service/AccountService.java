@@ -21,4 +21,8 @@ public interface AccountService {
     AccountResponse update(String nickname, AccountRequest request);
 
     AccountResponse updatePhoto(String nickname, MultipartFile photo);
+
+    List<AccountResponse> sleepMode();
+
+    List<AccountResponse> offlineMode();
 }
