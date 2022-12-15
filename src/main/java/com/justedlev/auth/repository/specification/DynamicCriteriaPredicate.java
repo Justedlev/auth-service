@@ -23,41 +23,48 @@ public class DynamicCriteriaPredicate {
         Object first = criteria.getFirst();
         Object second = criteria.getSecond();
         switch (criteria.getOperator()) {
-            case EQUAL:
+            case EQUAL -> {
                 return builder.equal(root.get(attributeName), first.toString());
-            case GREATER_THAN, AFTER:
+            }
+            case GREATER_THAN, AFTER -> {
                 return builder.greaterThan(root.get(attributeName), first.toString());
-            case LESS_THAN, BEFORE:
+            }
+            case LESS_THAN, BEFORE -> {
                 return builder.lessThan(root.get(attributeName), first.toString());
-            case GREATER_THAN_OR_EQUAL:
+            }
+            case GREATER_THAN_OR_EQUAL -> {
                 return builder.greaterThanOrEqualTo(root.get(attributeName), first.toString());
-            case LESS_THAN_OR_EQUAL:
+            }
+            case LESS_THAN_OR_EQUAL -> {
                 return builder.lessThanOrEqualTo(root.get(attributeName), first.toString());
-            case LIKE:
+            }
+            case LIKE -> {
                 return builder.like(root.get(attributeName), "%" + first.toString() + "%");
-            case NOT_LIKE:
+            }
+            case NOT_LIKE -> {
                 return builder.notLike(root.get(attributeName), "%" + first.toString() + "%");
-            case IN: {
+            }
+            case IN -> {
                 if (first instanceof Collection) {
-                    Collection<?> collection = (Collection<?>) first;
-                    return root.get(attributeName).in(collection);
+                    return root.get(attributeName).in((Collection<?>) first);
                 } else {
                     return builder.like(root.get(attributeName), first.toString());
                 }
             }
-            case NOT_IN: {
+            case NOT_IN -> {
                 if (first instanceof Collection) {
-                    Collection<?> collection = (Collection<?>) first;
-                    return builder.not(root.get(attributeName).in(collection));
+                    return builder.not(root.get(attributeName).in((Collection<?>) first));
                 } else {
                     return builder.notLike(root.get(attributeName), first.toString());
                 }
             }
-            case IS_NULL:
+            case IS_NULL -> {
                 return builder.isNull(root.get(attributeName));
-            case NOT_NULL:
+            }
+            case NOT_NULL -> {
                 return builder.isNotNull(root.get(attributeName));
-            case BETWEEN: {
+            }
+            case BETWEEN -> {
                 if (first instanceof Date && second instanceof Date) {
                     return builder.between(root.get(attributeName), (Date) first, (Date) second);
                 }
@@ -66,8 +73,7 @@ public class DynamicCriteriaPredicate {
                 }
                 throw new IllegalArgumentException(String.format("Object type from '%s' not supported", first.getClass().getName()));
             }
-            default:
-                throw new OperationNotSupportedException("Operation not supported yet");
+            default -> throw new OperationNotSupportedException("Operation not supported yet");
         }
     }
 }
