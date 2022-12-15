@@ -29,13 +29,6 @@ public class AccountController {
         return ResponseEntity.ok(accountService.getPage(request));
     }
 
-//    @GetMapping(value = AccountEndpoint.EMAIL)
-//    public ResponseEntity<AccountResponse> getAccountByEmail(@PathVariable String email) {
-//        var responseBody = accountService.getByEmail(email);
-//
-//        return ResponseEntity.ok(responseBody);
-//    }
-
     @GetMapping(value = EndpointConstant.NICKNAME)
     public ResponseEntity<AccountResponse> getAccountByNickname(@PathVariable
                                                                 @Valid
