@@ -1,6 +1,9 @@
 justedlev-service:
   storage:
-    host: http://localhost:8081/api
+    client:
+      url: http://localhost:8081/api
+      connect-timeout: 1m
+      read-timeout: 10s
   auth:
     fill-users: false
     min-password-length: ${MIN_PASSWORD_LENGTH:8}

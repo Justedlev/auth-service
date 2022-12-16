@@ -18,4 +18,6 @@ public class AuthProperties {
     private String clientId;
     private String clientSecret;
     private Duration activityTime;
+    private Duration readTimeout;
+    private Duration connectTimeout;
 }
