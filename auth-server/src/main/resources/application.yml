@@ -46,8 +46,9 @@ spring:
           writetimeout: 5000
 justedlev-service:
   auth:
-    connect-timeout: 1m
-    read-timeout: 10s
+    client:
+      connect-timeout: 1m
+      read-timeout: 10s
     fill-users: false
     min-password-length: ${MIN_PASSWORD_LENGTH:8}
     count-last-hashes: ${COUNT_LAST_HASHES:3}
