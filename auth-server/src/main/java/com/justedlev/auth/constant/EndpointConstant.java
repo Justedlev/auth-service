@@ -10,8 +10,7 @@ public final class EndpointConstant {
     public static final String ACTIVATE = "/activate";
     public static final String CONFIRM = "/confirm";
     public static final String PHOTO = "/photo";
-    public static final String OFFLINE = "/offline";
-    public static final String SLEEP = "/sleep";
+    public static final String UPDATE_MODE = "/update-mode";
 
     // User
     public static final String USER = V1 + "/user";
@@ -22,8 +21,7 @@ public final class EndpointConstant {
 
     // Account
     public static final String ACCOUNT = V1 + "/account";
-    public static final String ACCOUNT_SLEEP = ACCOUNT + SLEEP;
-    public static final String ACCOUNT_OFFLINE = ACCOUNT + OFFLINE;
+    public static final String ACCOUNT_UPDATE_MODE = ACCOUNT + UPDATE_MODE;
     public static final String NICKNAME = "/" + PathVariableConstant.NICKNAME;
     public static final String EMAIL = "/" + PathVariableConstant.EMAIL;
     public static final String ACCOUNT_NICKNAME = ACCOUNT + NICKNAME;

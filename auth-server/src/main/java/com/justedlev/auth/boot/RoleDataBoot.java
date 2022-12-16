@@ -6,12 +6,14 @@ import com.justedlev.auth.component.RoleComponent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Function;
@@ -22,6 +24,10 @@ import java.util.stream.Collectors;
 @Order(value = 1)
 @RequiredArgsConstructor
 public class RoleDataBoot implements ApplicationRunner {
+    @Value("${justedlev-service.auth.read-timeout:1m}")
+    private Duration readTimeout;
+    @Value("${justedlev-service.auth.connect-timeout:10s}")
+    private Duration connectTimeout;
     private final RoleComponent roleComponent;
     private static final Map<String, String> roleMap = Arrays.stream(RoleType.values())
             .collect(Collectors.toMap(RoleType::getType, RoleType::getGroup));

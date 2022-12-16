@@ -3,6 +3,7 @@ package com.justedlev.auth.controller;
 import com.justedlev.auth.constant.EndpointConstant;
 import com.justedlev.auth.model.request.AccountRequest;
 import com.justedlev.auth.model.request.PaginationRequest;
+import com.justedlev.auth.model.request.UpdateAccountModeRequest;
 import com.justedlev.auth.model.response.AccountResponse;
 import com.justedlev.auth.model.response.PageResponse;
 import com.justedlev.auth.model.response.ReportResponse;
@@ -63,13 +64,8 @@ public class AccountController {
         return ResponseEntity.ok(accountService.confirm(code));
     }
 
-    @PostMapping(value = EndpointConstant.SLEEP)
-    public ResponseEntity<List<AccountResponse>> sleep() {
-        return ResponseEntity.ok(accountService.sleepMode());
-    }
-
-    @PostMapping(value = EndpointConstant.OFFLINE)
-    public ResponseEntity<List<AccountResponse>> offline() {
-        return ResponseEntity.ok(accountService.offlineMode());
+    @PostMapping(value = EndpointConstant.UPDATE_MODE)
+    public ResponseEntity<List<AccountResponse>> sleep(@RequestBody UpdateAccountModeRequest request) {
+        return ResponseEntity.ok(accountService.updateMode(request));
     }
 }

@@ -2,6 +2,7 @@ package com.justedlev.auth.service;
 
 import com.justedlev.auth.model.request.AccountRequest;
 import com.justedlev.auth.model.request.PaginationRequest;
+import com.justedlev.auth.model.request.UpdateAccountModeRequest;
 import com.justedlev.auth.model.response.AccountResponse;
 import com.justedlev.auth.model.response.PageResponse;
 import com.justedlev.auth.model.response.ReportResponse;
@@ -22,7 +23,5 @@ public interface AccountService {
 
     AccountResponse updatePhoto(String nickname, MultipartFile photo);
 
-    List<AccountResponse> sleepMode();
-
-    List<AccountResponse> offlineMode();
+    List<AccountResponse> updateMode(UpdateAccountModeRequest request);
 }
