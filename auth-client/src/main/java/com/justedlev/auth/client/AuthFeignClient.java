@@ -11,7 +11,7 @@ import java.util.List;
 
 @FeignClient(
         name = "auth-api-client",
-        url = "${justedlev-service.auth.host}",
+        url = "${justedlev-service.auth.client.url}",
         configuration = AuthFeignClientConfiguration.class
 )
 public interface AuthFeignClient {
