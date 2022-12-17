@@ -1,9 +1,12 @@
 package com.justedlev.auth.client.configuration;
 
 import feign.Request;
+import feign.RequestInterceptor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,5 +24,13 @@ public class AuthFeignClientConfiguration {
                 TimeUnit.MILLISECONDS,
                 Boolean.FALSE
         );
+    }
+
+    @Bean
+    public RequestInterceptor requestInterceptor() {
+        return requestTemplate -> {
+            requestTemplate.header(HttpHeaders.AUTHORIZATION, String.format("Bearer %s", ""));
+            requestTemplate.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+        };
     }
 }

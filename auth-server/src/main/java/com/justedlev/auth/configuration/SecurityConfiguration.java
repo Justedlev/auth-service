@@ -37,7 +37,6 @@ public class SecurityConfiguration {
             EndpointConstant.AUTH_LOGIN_REFRESH,
             EndpointConstant.ACCOUNT_CONFIRM_CODE,
             EndpointConstant.LOGOUT,
-            EndpointConstant.ACCOUNT_UPDATE_MODE
     };
     private static final String[] SUPER_ADMIN_ACCESS = {
             EndpointConstant.ROLE,
@@ -46,6 +45,7 @@ public class SecurityConfiguration {
             EndpointConstant.ROLE_ROLE_TYPE_UPDATE,
             EndpointConstant.HISTORY_ACCOUNT,
             EndpointConstant.HISTORY_USER,
+            EndpointConstant.ACCOUNT_UPDATE_MODE
     };
     private static final String[] ADMIN_ACCESS = {
             EndpointConstant.USER,
