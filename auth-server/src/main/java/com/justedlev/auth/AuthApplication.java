@@ -2,7 +2,6 @@ package com.justedlev.auth;
 
 import com.justedlev.auth.properties.*;
 import com.justedlev.storage.client.StorageFeignClient;
-import com.justedlev.storage.client.configuration.StorageFeignClientProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -19,8 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
         CronProperties.class,
         ServiceProperties.class,
         TokenAccessProperties.class,
-        TokenRefreshProperties.class,
-        StorageFeignClientProperties.class
+        TokenRefreshProperties.class
 })
 public class AuthApplication {
     public static void main(String[] args) {
